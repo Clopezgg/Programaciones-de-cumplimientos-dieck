@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portal SAP Producción & Programación</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-quartz">
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand-block">
+        <div class="sap-mark">SAP</div>
+        <div>
+          <div class="brand-title">SAP LOGON 800 · Portal Operativo</div>
+          <div class="brand-subtitle">Producción · Programación · Cumplimiento · Lotificación · Maestros</div>
+        </div>
+      </div>
+      <div class="okcode-wrap">
+        <label for="okCode">OK Code</label>
+        <input id="okCode" class="okcode" type="text" placeholder="/nZCMP01" autocomplete="off" />
+        <button class="btn btn-primary" id="btnRunCode" type="button">Ejecutar</button>
+      </div>
+      <div class="top-actions">
+        <button class="btn btn-ghost" data-nav="dashboard" type="button">Inicio</button>
+        <button class="btn btn-ghost" data-nav="config" type="button">Configuración</button>
+        <button class="btn btn-ghost" data-action="quick-print" type="button">Imprimir</button>
+        <div class="session-chip" id="sessionChip">Sin sesión</div>
+        <button class="btn btn-ghost" id="btnLogout" type="button" hidden>Cerrar sesión</button>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <aside class="sidebar">
+        <section class="panel panel-compact">
+          <div class="panel-title">Transacciones</div>
+          <div class="nav-tree" id="navTree"></div>
+        </section>
+
+        <section class="panel panel-compact">
+          <div class="panel-title">Estado</div>
+          <div class="status-grid">
+            <div><span>Semana</span><strong id="statusWeek">-</strong></div>
+            <div><span>Fecha</span><strong id="statusDate">-</strong></div>
+            <div><span>Vista</span><strong id="statusView">-</strong></div>
+            <div><span>Guardado</span><strong id="statusSave">-</strong></div>
+          </div>
+        </section>
+
+        <section class="panel panel-compact">
+          <div class="panel-title">Accesos rápidos</div>
+          <div class="quick-actions">
+            <button class="btn btn-secondary" data-nav="production" type="button">Capturar producción</button>
+            <button class="btn btn-secondary" data-nav="programming" type="button">Programar semana</button>
+            <button class="btn btn-secondary" data-nav="compliance" type="button">Ver cumplimiento</button>
+            <button class="btn btn-secondary" data-nav="lotification" type="button">Control lotes</button>
+          </div>
+        </section>
+      </aside>
+
+      <main class="main">
+        <section class="banner panel">
+          <div>
+            <div class="eyebrow">Sistema web operativo</div>
+            <h1 id="screenTitle">Inicio</h1>
+            <p id="screenSubtitle">Selecciona una transacción para capturar, consultar o imprimir información.</p>
+          </div>
+          <div class="banner-stats" id="bannerStats"></div>
+        </section>
+
+        <section class="module-host panel" id="screenHost"></section>
+      </main>
+    </div>
+  </div>
+
+  <div class="suggestions" id="pickerPanel" hidden></div>
+  <div class="modal" id="importModal" hidden>
+    <div class="modal-card panel">
+      <div class="modal-head">
+        <h3>Importación masiva</h3>
+        <button class="icon-btn" id="closeImportModal" type="button">×</button>
+      </div>
+      <p class="muted">Pega datos de Excel o CSV. El sistema detecta columnas comunes de programación y producción.</p>
+      <div class="field-row">
+        <label for="importKind">Tipo de datos</label>
+        <select id="importKind">
+          <option value="production">Producción</option>
+          <option value="programming">Programación</option>
+          <option value="master">Maestro</option>
+        </select>
+      </div>
+      <textarea id="importText" placeholder="Pega aquí las filas copiadas desde Excel..."></textarea>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="btnPreviewImport" type="button">Vista previa</button>
+        <button class="btn btn-primary" id="btnApplyImport" type="button">Aplicar</button>
+      </div>
+      <div id="importPreview" class="import-preview"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
